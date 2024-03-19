@@ -1,0 +1,56 @@
+class Product:
+    def __init__(self, name, category, price, quantity, seller):
+        self.name = name
+        self.category = category
+        self.price = price
+        self.quantity = quantity
+        self.seller = seller
+
+class Marketplace:
+    def __init__(self):
+        self.products = []
+
+    def add_product(self, product):
+        self.products.append(product)
+
+    def list_products(self):
+        for product in self.products:
+            print(f"{product.name} - Category: {product.category} - Price: ${product.price} - Quantity: {product.quantity} - Seller: {product.seller}")
+
+# Example usage:
+marketplace = Marketplace()
+marketplace.add_product(Product("Apples", "Fruits", 1.5, 100, "Farmer1"))
+marketplace.add_product(Product("Potatoes", "Vegetables", 0.75, 200, "Farmer2"))
+marketplace.list_products()
+class Marketplace:
+    # Existing code...
+
+    def search_products(self, keyword):
+        matching_products = [product for product in self.products if keyword.lower() in product.name.lower()]
+        if matching_products:
+            print("Matching Products:")
+            for product in matching_products:
+                print(f"{product.name} - Category: {product.category} - Price: ${product.price} - Quantity: {product.quantity} - Seller: {product.seller}")
+        else:
+            print("No matching products found.")
+
+# Example usage:
+marketplace.search_products("Apples")
+class Marketplace:
+    # Existing code...
+
+    def buy_product(self, product_name, quantity, buyer):
+        for product in self.products:
+            if product.name.lower() == product_name.lower():
+                if product.quantity >= quantity:
+                    total_cost = product.price * quantity
+                    print(f"You have bought {quantity} {product.name}(s) for ${total_cost}.")
+                    product.quantity -= quantity
+                    return
+                else:
+                    print("Insufficient quantity available.")
+                    return
+        print("Product not found.")
+
+# Example usage:
+marketplace.buy_product("Apples", 10, "Buyer1")
